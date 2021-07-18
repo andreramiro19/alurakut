@@ -1,58 +1,39 @@
-import styled from 'styled-components'
+import MainGrid from '../src/Components/MainGrid'
+import Box from '../src/Components/Box'
+import {AlurakutMenu} from '../src/lib/AlurakutCommons'
 
-//const Title = styled.h1`
-//  font-size: 50px;
-//  color: ${({ theme }) => theme.colors.primary};
-//`
-
-const Box = styled.div`
-  background: #FFFFFF;
-  border-radius: 8px;
-`;
-
-const MainGrid = styled.div`
-  width: 100%;
-  grid-gap: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;  
-  padding: 16px;
-  .profileArea {
-    display: none;
-    @media(min-width: 860px) {
-      display: block;
-    }
-  }
-  @media(min-width: 860px) {
-    max-width: 1110px;
-    display: grid;
-    grid-template-areas: "profileArea welcomeArea profileRelationsArea";
-    grid-template-columns: 160px 1fr 312px;
-  }
-  
-`;
+function ProfileSideBar(propriedades) {
+  return (
+    <Box>
+      <img src={`https://github.com/${propriedades.githubUser}.png`} style={{borderRadius: '8px'}}></img>
+    </Box>
+  )
+}
 
 export default function Home() {
+  const githubUser = 'andreramiro19';
+
   return (
-    <MainGrid>
-      <div className="profileArea" style={{gridArea: 'profileArea'}}>
-        <Box>
-          Imagem
-        </Box>
-      </div>
-      <div className="welcomeArea" style={{gridArea: 'welcomeArea'}}>
-        <Box>
-          Bem vindo
-        </Box>
-      </div>
-      <div className="profileRelationsArea" style={{gridArea: 'profileRelationsArea'}}>
-        <Box>
-          Pessoas da comunidade
-        </Box>
-        <Box>
-          Comunidades
-        </Box>
-      </div>
-    </MainGrid>
+    <>
+      <AlurakutMenu/>
+      <MainGrid>
+        <div className="profileArea" style={{gridArea: 'profileArea'}}>
+          <ProfileSideBar githubUser={githubUser}></ProfileSideBar>
+        </div>
+        <div className="welcomeArea" style={{gridArea: 'welcomeArea'}}>
+          <Box>
+            Bem vindo
+          </Box>
+        </div>
+        <div className="profileRelationsArea" style={{gridArea: 'profileRelationsArea'}}>
+          <Box>
+            Pessoas da comunidade
+          </Box>
+          <Box>
+            Comunidades
+          </Box>
+        </div>
+      </MainGrid>
+    </>
   )
 }
